@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Я люблю тебе</title>
+  <style>
+    body {
+      background-color: #ffe6f0;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding-top: 80px;
+    }
+
+    h1 {
+      color: #e60073;
+      font-size: 42px;
+      margin-bottom: 40px;
+    }
+
+    .heart {
+      font-size: 60px;
+      cursor: pointer;
+      animation: blink 1s infinite;
+      color: red;
+      transition: transform 0.3s;
+    }
+
+    .heart:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .hidden {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.8s ease;
+    }
+
+    .visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    #catSection {
+      margin-top: 30px;
+    }
+
+    #catSection img {
+      width: 80%;
+      max-width: 320px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .caption {
+      font-size: 28px;
+      margin-top: 15px;
+      color: #e60073;
+      font-weight: bold;
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Я люблю тебе</h1>
+  <div class="heart" onclick="toggleCat()">❤️</div>
+  <div class="caption">Нажми</div>
+
+  <div id="catSection" class="hidden">
+    <img src="image.png" alt="Кицька" />
+    <div class="caption">кицька</div>
+  </div>
+
+  <audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+    Твій браузер не підтримує аудіо.
+  </audio>
+
+  <script>
+    const catSection = document.getElementById('catSection');
+    const music = document.getElementById('bgMusic');
+    let isVisible = false;
+
+    function toggleCat() {
+      isVisible = !isVisible;
+      if (isVisible) {
+        catSection.classList.add('visible');
+        catSection.classList.remove('hidden');
+        music.play();
+      } else {
+        catSection.classList.remove('visible');
+        catSection.classList.add('hidden');
+        music.pause();
+        music.currentTime = 0;
+      }
+    }
+  </script>
+</body>
+</html>
+
